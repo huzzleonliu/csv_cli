@@ -47,3 +47,13 @@ cargo nextest 是一个 Rust 增强测试工具。
 ```bash
 cargo install cargo-nextest --locked
 ```
+### 新用到的插件
+- Clap
+Clap是一个命令行软件工具
+https://docs.rs/clap/latest/clap/
+- csv
+CSV处理库
+- serde
+用来处理序列化的数据的库
+- anyhow
+错误处理
