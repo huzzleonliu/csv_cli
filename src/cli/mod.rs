@@ -2,8 +2,9 @@ pub mod base64;
 pub mod csv;
 pub mod genpass;
 
-pub use self::base64::Base64SubCommand;
+pub use self::base64::{Base64Format, Base64SubCommand};
 pub use self::csv::CsvOpts;
+pub use self::csv::OutputFormat;
 pub use self::genpass::GenPassOpts;
 pub use clap::Parser;
 use std::path::Path;
@@ -31,5 +32,21 @@ pub fn verify_input_file(filename: &str) -> Result<String, &'static str> {
         Ok(filename.into())
     } else {
         Err("File does not exist")
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    #[test]
+    fn test_verify_input_file() {
+        let filename = "Cargo.toml";
+        assert_eq!(verify_input_file(filename), Ok(filename.into()));
+        let filename = "not_exist";
+        assert_eq!(verify_input_file(filename), Err("File does not exist"));
+        let filename = "-";
+        assert_eq!(verify_input_file(filename), Ok(filename.into()));
+        let filename = "*";
+        assert_eq!(verify_input_file(filename), Err("File does not exist"));
     }
 }
