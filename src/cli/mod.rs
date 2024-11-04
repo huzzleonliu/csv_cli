@@ -1,11 +1,13 @@
 pub mod base64;
 pub mod csv;
 pub mod genpass;
+pub mod text;
 
 pub use self::base64::{Base64Format, Base64SubCommand};
 pub use self::csv::CsvOpts;
 pub use self::csv::OutputFormat;
 pub use self::genpass::GenPassOpts;
+pub use self::text::*;
 pub use clap::Parser;
 use std::path::Path;
 
